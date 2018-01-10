@@ -193,7 +193,7 @@
                     style:(JDStatusBarStyle*)style;
 {
   // first, check if status bar is visible at all
-  if ([UIApplication sharedApplication].statusBarHidden) return nil;
+//  if ([UIApplication sharedApplication].statusBarHidden) return nil;
 
   // prepare for new style
   if (style != self.activeStyle) {
@@ -482,6 +482,7 @@
 
 - (void)updateTopBarFrameWithStatusBarFrame:(CGRect)rect;
 {
+    rect = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20);
   CGFloat width = MAX(rect.size.width, rect.size.height);
   CGFloat height = MIN(rect.size.width, rect.size.height);
 
@@ -502,7 +503,7 @@
 
 - (void)willChangeStatusBarFrame:(NSNotification*)notification;
 {
-  CGRect newBarFrame = [notification.userInfo[UIApplicationStatusBarFrameUserInfoKey] CGRectValue];
+    CGRect newBarFrame = [notification.userInfo[UIApplicationStatusBarFrameUserInfoKey] CGRectValue];
   NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
 
   // update window & statusbar
